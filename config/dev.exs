@@ -12,4 +12,4 @@ config :account_core, AccountCore.Repo,
 config :logger, :console, format: "[$level] $message\n"
 
 # configuration from environment variables.
-# import_config "dev.secret.exs"
+import_config "dev.secret.exs"

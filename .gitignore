@@ -22,4 +22,8 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 account_core-*.tar
 
-.elixir_ls
+# Visutal studio code
+.elixir_ls/
+
+# Ignore config secrets
+/config/*secret.exs
