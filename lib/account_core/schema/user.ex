@@ -5,7 +5,7 @@ defmodule AccountCore.Schema.User do
   schema "users" do
     field :email, :string
     field :password_hash, :string
-    field :pubg, :string
+    field :pubg_id, :string
     # virtual field
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
