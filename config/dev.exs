@@ -11,5 +11,7 @@ config :account_core, AccountCore.Repo,
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
-# configuration from environment variables.
-import_config "dev.secret.exs"
+# Auth Secret Key
+config :account_core, AccountCore.Guardian,
+  issuer: "account_core",
+  secret_key: "1Di0BLNANkPPqAbdcM60Gi2iuyPTvdZxtY8W5Apd3GfgeE/O8307J4qeEheoVQY6"
