@@ -14,6 +14,10 @@ config :account_core, ecto_repos: [AccountCore.Repo]
 #   format: "$time $metadata[$level] $message\n",
 #   metadata: [:request_id]
 
+# Internal Configuration
+# reset password token length
+config :account_core, :reset_token_length, 6
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

@@ -10,6 +10,9 @@ defmodule AccountCore.Schema.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
+    field :reset_password_token, :string
+    field :reset_password_sent_at, :utc_datetime
+
     timestamps()
   end
 

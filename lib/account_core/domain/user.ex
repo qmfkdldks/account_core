@@ -15,6 +15,8 @@ defmodule AccountCore.Domain.User do
   alias AccountCore.Guardian
   import Comeonin.Bcrypt, only: [checkpw: 2]
 
+  @reset_token_length Application.fetch_env!(:account_core, :reset_token_length)
+
   @doc """
   Returns token and additional properties
   """
@@ -48,7 +50,32 @@ defmodule AccountCore.Domain.User do
     end
   end
 
+  @doc """
+  Generate reset_password_token and send email
+
+  email not exist
+  sent successful
+  """
+  def get_reset_password_token(user) do
+    token = random_string(@reset_token_length)
+
+    with
+      {:ok, user} <- Model.User.update(user, %{ "reset_password_token" => token, "reset_password_sent_at" => DateTime.utc_now })
+    do
+
+    else
+      {:error, changeset} -> {:error, parse_errors(changeset)}
+    end
+  end
+
+  def reset_password(user) do
+
+  end
+
   # Private
+  defp random_string(length) do
+    :crypto.strong_rand_bytes(length) |> Base.url_encode64 |> binary_part(0, length)
+  end
 
   defp email_password_auth(email, password) do
     with {:ok, user} <- Model.User.get_by_email(email),
