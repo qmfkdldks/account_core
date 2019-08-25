@@ -57,13 +57,10 @@ defmodule AccountCore.Domain.User do
   sent successful
   """
   def get_reset_password_token(user) do
-    token = random_string(@reset_token_length)
+    token = random_token(@reset_token_length)
 
-    with
-      {:ok, user} <- Model.User.update(user, %{ "reset_password_token" => token, "reset_password_sent_at" => DateTime.utc_now })
-    do
-
-    else
+    case Model.User.update(user, %{ "reset_password_token" => token, "reset_password_sent_at" => DateTime.utc_now }) do
+      {:ok, user} -> {:ok, token}
       {:error, changeset} -> {:error, parse_errors(changeset)}
     end
   end
@@ -73,7 +70,7 @@ defmodule AccountCore.Domain.User do
   end
 
   # Private
-  defp random_string(length) do
+  defp random_token(length) do
     :crypto.strong_rand_bytes(length) |> Base.url_encode64 |> binary_part(0, length)
   end
 

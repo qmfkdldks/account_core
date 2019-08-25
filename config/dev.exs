@@ -4,7 +4,7 @@ use Mix.Config
 config :account_core, AccountCore.Repo,
   username: "liar",
   password: "007rkdqm",
-  database: "accountcore_dev",
+  database: "account_core_dev",
   hostname: "localhost",
   pool_size: 10
 

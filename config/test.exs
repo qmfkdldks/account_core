@@ -2,9 +2,9 @@ use Mix.Config
 
 # Configure your database
 config :account_core, AccountCore.Repo,
-  username: "liar",
-  password: "007rkdqm",
-  database: "accountcore_test",
+  username: "postgres",
+  password: "postgres",
+  database: "account_core_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
